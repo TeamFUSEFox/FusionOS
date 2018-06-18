@@ -1,0 +1,12 @@
+if term.isColour() then
+    print("CraftPC v1.7.4 Advanced")
+	print("168KB RAM")
+	print("1MB Hard Disk Drive")
+	print("FusionOS v1.1.0")
+else
+    print("CraftPC v1.7.4")
+	print("168KB RAM")
+	print("1MB Hard Disk Drive")
+	print("FusionOS v1.1.0")
+
+end
