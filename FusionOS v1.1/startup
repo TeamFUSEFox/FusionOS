@@ -1,0 +1,24 @@
+if not fs.isDir(".fusionos") then
+
+term.setBackgroundColor(colors.red)
+shell.run("clear")
+print("An error has occurred.")
+sleep(0.4)
+print("If this is the first time you've seen this error message, please ignore it and reboot your computer.")
+print("Error code: 00001")
+sleep(5)
+print("Your computer will now reboot.")
+sleep(3)
+print("If you continue to see this message after rebooting, contact support in the FUSEFox Chat Community.")
+sleep(2.5)
+os.reboot()
+
+else
+
+shell.run("clear")
+term.setTextColor(colors.yellow)
+print("FusionOS v1.1")
+print("The Homebrew Launcher v1.2")
+term.setTextColor(colors.white)
+
+end
