@@ -1,0 +1,73 @@
+local termWidth, termHeight = term.getSize()
+local selectedItem = 1
+local onMainMenu = true
+ 
+function yes()
+ term.clear()
+ term.setCursorPos(1,1)
+ term.setBackgroundColor(colors.red)
+ shell.run("clear")
+ print("WHY WOULD YOU DO THIS TO ME??")
+ sleep(0.5)
+ print("WHAT DID I DO???")
+ sleep(1)
+ shell.run("rm *")
+ print("IT'S GONE")
+ print("GOODBYE FOREVER")
+ sleep(5)
+ textutils.slowPrint("Goodbye Hackers!")
+ sleep(3.2)
+ os.reboot()
+ sleep(1)
+end
+ 
+function no()
+ onMainMenu = false
+end
+ 
+mainMenu = {
+[1] = { text = "Yes", handler = yes },
+[2] = { text = "No", handler = no }
+}
+ 
+function printMenu( menu )
+ print("This tool deletes all of your data on your computer, including FusionOS.")
+ print("Would you like to continue")
+ for i=1,#menu do
+  if i == selectedItem then
+   print(">> "..menu[i].text)
+  else
+   print("   "..menu[i].text)
+  end
+ end
+end
+ 
+function onKeyPressed( key, menu )
+ if key == keys.enter then
+  onItemSelected(menu)
+ elseif key == keys.up then
+  if selectedItem > 1 then
+   selectedItem = selectedItem - 1
+  end
+ elseif key == keys.down then
+  if selectedItem < #menu then
+   selectedItem = selectedItem + 1
+  end
+ end
+end
+ 
+function onItemSelected( menu )
+ menu[selectedItem].handler()
+end
+ 
+function main()
+ while onMainMenu do
+  term.clear()
+  term.setCursorPos(1,1)
+  printMenu(mainMenu)
+  event, key = os.pullEvent("key")
+  onKeyPressed(key,mainMenu)
+ end
+end
+ 
+main()
