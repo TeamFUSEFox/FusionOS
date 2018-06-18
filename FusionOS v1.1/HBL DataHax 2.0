@@ -1,0 +1,6 @@
+if term.isColour() then
+    term.setTextColour( colours.yellow )
+end
+print("The Homebrew Launcher v1.2")
+print("Installed using DataHax 2.0")
+term.setTextColour( colours.white )
