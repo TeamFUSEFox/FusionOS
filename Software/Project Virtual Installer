@@ -1,0 +1,32 @@
+term.setTextColor(colors.white)
+term.setBackgroundColor(colors.black)
+term.clear()
+term.setCursorPos(1,1)
+print("Please choose a folder to install (left empty for default)")
+write(">")
+local sPath = read(nil,nil,nil,"/opt/virtualos-manager")
+if sPath == "" then
+    sPath = "/opt/virtualos-manager"
+end
+sPath = fs.combine(sPath,"")
+shell.run("wget https://gitlab.com/Wilma456/Computercraft/raw/master/Programs/virtualos.lua "..fs.combine(sPath,"virtualos.lua"))
+shell.run("wget https://gitlab.com/Wilma456/Computercraft/raw/master/Programs/virtualos-manager.lua "..fs.combine(sPath,"virtualos-manager.lua"))
+term.setTextColor(colors.white)
+term.setBackgroundColor(colors.black)
+term.clear()
+term.setCursorPos(1,1)
+print("All done!")
+if sPath ~= ""then
+    print("Do you want to create a launcher in the root directory? (Y/N)")
+    while true do
+        local ev,me = os.pullEvent("key")
+        if me == keys.y then
+            file = fs.open("/virtualos-manager","w")
+            file.write('shell.run("'..fs.combine(sPath,"virtualos-manager.lua")..'")')
+            file.close()
+            break
+        elseif me == keys.n then 
+            break
+        end
+    end
+end
